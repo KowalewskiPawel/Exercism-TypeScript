@@ -109,3 +109,20 @@ export function age(planet: string, seconds: number): number {
 
   return Math.round((seconds / (31557600 * planets[planet])) * 100) / 100;
 }
+
+// Pangram
+
+export function isPangram(word: string): boolean {
+  const alphabet: string[] = "abcdefghijklmnopqrstuvwxyz".split("");
+  const letters: string[] = word.toLowerCase().split("");
+  const pangramLetters: string[] = [];
+  let pangram: boolean = false;
+
+  letters.forEach((letter: string) => {
+    if (alphabet.includes(letter) && !pangramLetters.includes(letter)) {
+      pangramLetters.push(letter);
+    }
+  });
+
+  return alphabet.length === pangramLetters.length;
+}
