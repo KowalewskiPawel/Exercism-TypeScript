@@ -126,3 +126,39 @@ export function isPangram(word: string): boolean {
 
   return alphabet.length === pangramLetters.length;
 }
+
+// Bob
+
+export function hey(message: string): string {
+  const messageArray: string[] = message.trim().split("");
+
+  const alphanumericRegex: RegExp = /[a-z0-9]+$/i;
+  const lettersRegex: RegExp = /[a-z]+/i;
+
+  if (
+    message.toUpperCase() === message &&
+    messageArray[messageArray.length - 1] === "?" &&
+    lettersRegex.test(message)
+  ) {
+    return "Calm down, I know what I'm doing!";
+  }
+
+  if (messageArray[messageArray.length - 1] === "?") {
+    return "Sure.";
+  }
+
+  if (message.toUpperCase() === message && lettersRegex.test(message)) {
+    return "Whoa, chill out!";
+  }
+
+  if (
+    messageArray[messageArray.length - 1] === "." ||
+    messageArray[messageArray.length - 1] === "!" ||
+    lettersRegex.test(message) ||
+    alphanumericRegex.test(message)
+  ) {
+    return "Whatever.";
+  }
+
+  return "Fine. Be that way!";
+}
