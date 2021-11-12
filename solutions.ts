@@ -162,3 +162,36 @@ export function hey(message: string): string {
 
   return "Fine. Be that way!";
 }
+
+// DnD Character
+
+export class DnDCharacter {
+  strength = DnDCharacter.generateAbilityScore();
+  dexterity = DnDCharacter.generateAbilityScore();
+  constitution = DnDCharacter.generateAbilityScore();
+  intelligence = DnDCharacter.generateAbilityScore();
+  wisdom = DnDCharacter.generateAbilityScore();
+  charisma = DnDCharacter.generateAbilityScore();
+  hitpoints = 10 + DnDCharacter.getModifierFor(this.constitution);
+
+  private static getRandomNumber(): number {
+    return Math.floor(Math.random() * 6 + 1);
+  }
+
+  public static generateAbilityScore(): number {
+    const randomNumbersArray: number[] = [
+      this.getRandomNumber(),
+      this.getRandomNumber(),
+      this.getRandomNumber(),
+      this.getRandomNumber(),
+    ];
+    randomNumbersArray.sort();
+    randomNumbersArray.shift();
+    const reducer = (previousValue: number, currentValue: number) =>
+      previousValue + currentValue;
+    return randomNumbersArray.reduce(reducer, 0);
+  }
+  public static getModifierFor(abilityValue: number): number {
+    return Math.floor((abilityValue - 10) / 2);
+  }
+}
