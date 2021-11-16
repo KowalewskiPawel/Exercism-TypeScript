@@ -195,3 +195,36 @@ export class DnDCharacter {
     return Math.floor((abilityValue - 10) / 2);
   }
 }
+
+// Matrix
+
+export class Matrix {
+  readonly matrixArray: number[][];
+
+  constructor(matrix: string) {
+    this.matrixArray = matrix.split("\n").map((numbers: string) => {
+      const tempNumbers = numbers
+        .split(" ")
+        .map((item) => Number(item))
+        .flat();
+
+      return tempNumbers;
+    });
+  }
+
+  get rows(): number[][] {
+    return this.matrixArray;
+  }
+
+  get columns(): number[][] {
+    const columnsArray: number[][] = [];
+
+    for (let i = 0; i < this.matrixArray.length; i++) {
+      const tempArray: number[] = this.matrixArray.map((item) => item[i]);
+
+      columnsArray.push(tempArray);
+    }
+
+    return columnsArray;
+  }
+}
