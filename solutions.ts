@@ -228,3 +228,24 @@ export class Matrix {
     return columnsArray;
   }
 }
+
+// Word Count
+
+export function count(phrase: string): Map<string, number> {
+  const allWords = new Map<string, number>();
+
+  const regex: RegExp = /\s+/;
+
+  const words: string[] = phrase
+    .trim()
+    .split(regex)
+    .map((word) => word.toLowerCase());
+
+  words.forEach((word: string) => {
+    const tempValue: number = words.filter((item) => item === word).length;
+
+    allWords.set(word, tempValue);
+  });
+
+  return allWords;
+}
