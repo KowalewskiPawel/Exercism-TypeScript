@@ -229,6 +229,37 @@ export class Matrix {
   }
 }
 
+// Robot Name
+
+export class Robot {
+  currentName: string;
+
+  constructor() {
+    this.currentName = "";
+  }
+
+  public get name(): string {
+    if (this.currentName === "") {
+      const tempName: string = `${String.fromCharCode(
+        Math.floor(Math.random() * (65 - 90)) + 65
+      )}${String.fromCharCode(
+        Math.floor(Math.random() * (65 - 90)) + 65
+      )}${Math.floor(Math.random() * 10)}${Math.floor(
+        Math.random() * 10
+      )}${Math.floor(Math.random() * 10)}`;
+      this.currentName = tempName;
+    }
+
+    return this.currentName;
+  }
+
+  public resetName(): void {
+    this.currentName = "";
+  }
+
+  public static releaseNames(): void {}
+}
+
 // Word Count
 
 export function count(phrase: string): Map<string, number> {
