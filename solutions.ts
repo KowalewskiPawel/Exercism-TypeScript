@@ -278,6 +278,52 @@ export class GradeSchool {
   grade(studentsGrade: number): void {}
 }
 
+// Clock
+
+export class Clock {
+  hours: number;
+  minutes?: number;
+
+  constructor(hour: number, minute?: number) {
+    this.hours = hour % 24;
+    this.minutes = minute;
+  }
+
+  public toString(): string {
+    let tempMinutes: number = this.minutes ? this.minutes : 0;
+    let tempHours: number = this.hours;
+
+    if (tempMinutes >= 60) {
+      tempHours = this.hours + (tempMinutes % 60);
+    }
+
+    let stringHours: string = String(tempHours);
+    let stringMinutes: string = String(tempMinutes);
+
+    if (stringHours.length < 2) {
+      stringHours = `0${stringHours}`;
+    }
+
+    if (stringMinutes.length < 2) {
+      stringMinutes = `0${stringMinutes}`;
+    }
+
+    return `${stringHours}:${stringMinutes}`;
+  }
+
+  public plus(minutes: unknown): Clock {
+    throw new Error("Remove this statement and implement this function");
+  }
+
+  public minus(minutes: unknown): Clock {
+    throw new Error("Remove this statement and implement this function");
+  }
+
+  public equals(other: unknown): unknown {
+    throw new Error("Remove this statement and implement this function");
+  }
+}
+
 // Word Count
 
 export function count(phrase: string): Map<string, number> {
