@@ -260,6 +260,24 @@ export class Robot {
   public static releaseNames(): void {}
 }
 
+// Grade School
+
+export class GradeSchool {
+  constructor() {
+    this.grades = new Map<string, number>();
+  }
+
+  roster(): Map {
+    return this.grades.entries;
+  }
+
+  public add(learner: string, learnersGrade: number): void {
+    this.grades.add(learner, learnersGrade);
+  }
+
+  grade(studentsGrade: number): void {}
+}
+
 // Word Count
 
 export function count(phrase: string): Map<string, number> {
