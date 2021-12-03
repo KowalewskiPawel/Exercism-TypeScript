@@ -271,7 +271,8 @@ export class GradeSchool {
   }
 
   roster(): any {
-    return this.grades;
+    const tempObject: any = JSON.stringify(this.grades);
+    return JSON.parse(tempObject);
   }
 
   public add(learner: string, learnersGrade: number): void {
@@ -282,7 +283,11 @@ export class GradeSchool {
     let studentAlreadyRegistered: boolean = false;
 
     for (let students in this.grades) {
-      if (students.includes(learner)) return;
+      if (this.grades[students].includes(learner)) {
+        this.grades[students] = this.grades[students].filter(
+          (item) => item !== learner
+        );
+      }
     }
 
     if (tempGrades.includes(learner)) {
@@ -293,7 +298,8 @@ export class GradeSchool {
   }
 
   grade(studentsGrade: number): string[] {
-    return this.grades[studentsGrade] ? this.grades[studentsGrade] : [];
+    const tempObject: any = JSON.parse(JSON.stringify(this.grades));
+    return tempObject[studentsGrade] ? tempObject[studentsGrade] : [];
   }
 }
 
