@@ -263,19 +263,38 @@ export class Robot {
 // Grade School
 
 export class GradeSchool {
+  readonly grades: {
+    [index: number]: string[];
+  };
   constructor() {
-    this.grades = new Map<string, number>();
+    this.grades = {};
   }
 
-  roster(): Map {
-    return this.grades.entries;
+  roster(): any {
+    return this.grades;
   }
 
   public add(learner: string, learnersGrade: number): void {
-    this.grades.add(learner, learnersGrade);
+    const tempGrades: string[] = this.grades[learnersGrade]
+      ? [...this.grades[learnersGrade]]
+      : [];
+
+    let studentAlreadyRegistered: boolean = false;
+
+    for (let students in this.grades) {
+      if (students.includes(learner)) return;
+    }
+
+    if (tempGrades.includes(learner)) {
+      return;
+    }
+
+    this.grades[learnersGrade] = [...tempGrades, learner].sort();
   }
 
-  grade(studentsGrade: number): void {}
+  grade(studentsGrade: number): string[] {
+    return this.grades[studentsGrade] ? this.grades[studentsGrade] : [];
+  }
 }
 
 // Clock
