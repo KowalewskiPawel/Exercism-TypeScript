@@ -238,15 +238,42 @@ export class Robot {
     this.currentName = "";
   }
 
+  public static alphabet: string[] = [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L",
+    "M",
+    "N",
+    "O",
+    "P",
+    "Q",
+    "R",
+    "S",
+    "T",
+    "U",
+    "V",
+    "W",
+    "X",
+    "Y",
+    "Z",
+  ];
+
   public get name(): string {
     if (this.currentName === "") {
-      const tempName: string = `${String.fromCharCode(
-        Math.floor(Math.random() * (65 - 90)) + 65
-      )}${String.fromCharCode(
-        Math.floor(Math.random() * (65 - 90)) + 65
-      )}${Math.floor(Math.random() * 10)}${Math.floor(
+      const tempName: string = `${
+        Robot.alphabet[Math.floor(Math.random() * 26)]
+      }${Robot.alphabet[Math.floor(Math.random() * 26)]}${Math.floor(
         Math.random() * 10
-      )}${Math.floor(Math.random() * 10)}`;
+      )}${Math.floor(Math.random() * 10)}${Math.floor(Math.random() * 10)}`;
       this.currentName = tempName;
     }
 
