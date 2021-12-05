@@ -267,13 +267,28 @@ export class Robot {
     "Z",
   ];
 
+  public static releasedNames: Set<string> = new Set();
+
+  public static generateRandomName(): string {
+    return `${Robot.alphabet[Math.floor(Math.random() * 26)]}${
+      Robot.alphabet[Math.floor(Math.random() * 26)]
+    }${Math.floor(Math.random() * 10)}${Math.floor(
+      Math.random() * 10
+    )}${Math.floor(Math.random() * 10)}`;
+  }
+
   public get name(): string {
     if (this.currentName === "") {
-      const tempName: string = `${
-        Robot.alphabet[Math.floor(Math.random() * 26)]
-      }${Robot.alphabet[Math.floor(Math.random() * 26)]}${Math.floor(
-        Math.random() * 10
-      )}${Math.floor(Math.random() * 10)}${Math.floor(Math.random() * 10)}`;
+      let tempName: string = Robot.generateRandomName();
+      Robot.releasedNames.add(tempName);
+
+      for (let i: number = 0; i < Robot.releasedNames.size; i++) {
+        if (Robot.releasedNames.has(tempName)) {
+          tempName = Robot.generateRandomName();
+          Robot.releasedNames.add(tempName);
+        }
+      }
+
       this.currentName = tempName;
     }
 
@@ -284,7 +299,9 @@ export class Robot {
     this.currentName = "";
   }
 
-  public static releaseNames(): void {}
+  public static releaseNames(): void {
+    Robot.releasedNames.clear();
+  }
 }
 
 // Grade School
