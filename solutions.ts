@@ -413,3 +413,52 @@ export function count(phrase: string): Map<string, number> {
 
   return allWords;
 }
+
+// Secret Handshake
+
+export function commands(command: number): string[] {
+  const commands: string[] = [
+    "wink",
+    "double blink",
+    "close your eyes",
+    "jump",
+  ];
+
+  const intToBin: string[] = Number(command).toString(2).split("").reverse();
+
+  const result: string[] = [];
+
+  intToBin.forEach((binary: string, index: number) => {
+    switch (index) {
+      case 0:
+        if (binary === "1") result.push(commands[0]);
+
+        break;
+
+      case 1:
+        if (binary === "1") result.push(commands[1]);
+
+        break;
+
+      case 2:
+        if (binary === "1") result.push(commands[2]);
+
+        break;
+
+      case 3:
+        if (binary === "1") result.push(commands[3]);
+
+        break;
+
+      case 4:
+        if (binary === "1") result.reverse();
+
+        break;
+
+      default:
+        break;
+    }
+  });
+
+  return result;
+}
