@@ -462,3 +462,15 @@ export function commands(command: number): string[] {
 
   return result;
 }
+
+// Binary Search
+
+export function find(haystack: number[], needle: number): number | never {
+  const indexNumber: number = haystack.indexOf(needle);
+
+  if (indexNumber > -1) {
+    return indexNumber;
+  }
+
+  throw new Error("Value not in array");
+}
