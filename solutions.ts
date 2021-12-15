@@ -474,3 +474,9 @@ export function find(haystack: number[], needle: number): number | never {
 
   throw new Error("Value not in array");
 }
+
+// Reverse String
+
+export function reverse(phraseToReverse: string): string {
+  return phraseToReverse.split("").reverse().join("");
+}
