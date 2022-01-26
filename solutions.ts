@@ -485,9 +485,6 @@ export function reverse(phraseToReverse: string): string {
 
 export class LinkedList<TElement> {
 
-  constructor() {
-  }
-
   private linkedList: Set<TElement> = new Set();
   
   public push(element: TElement): void {
