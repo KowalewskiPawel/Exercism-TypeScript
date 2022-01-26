@@ -480,3 +480,48 @@ export function find(haystack: number[], needle: number): number | never {
 export function reverse(phraseToReverse: string): string {
   return phraseToReverse.split("").reverse().join("");
 }
+
+// Linked List
+
+export class LinkedList<TElement> {
+
+  constructor() {
+  }
+
+  private linkedList: Set<TElement> = new Set();
+  
+  public push(element: TElement): void {
+    this.linkedList.add(element);
+  }
+
+  public pop(): any {
+    
+    const tempArr: TElement[] = [...this.linkedList];
+    const lastElement = tempArr.pop();
+    this.linkedList = new Set(tempArr);
+    return lastElement;
+    
+  }
+
+  public shift(): any {
+
+    const tempArr: TElement[] = [...this.linkedList];
+    const lastElement = tempArr.shift();
+    this.linkedList = new Set(tempArr);
+    return lastElement;
+  }
+
+  public unshift(element: TElement) {
+    const tempArr: TElement[] = [...this.linkedList];
+    tempArr.unshift(element);
+    this.linkedList = new Set(tempArr);
+  }
+
+  public delete(element: TElement): void {
+    this.linkedList.delete(element);
+  }
+
+  public count(): number {
+    return this.linkedList.size;
+  }
+}
