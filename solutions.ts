@@ -179,12 +179,7 @@ export class DnDCharacter {
   }
 
   public static generateAbilityScore(): number {
-    const randomNumbersArray: number[] = [
-      this.getRandomNumber(),
-      this.getRandomNumber(),
-      this.getRandomNumber(),
-      this.getRandomNumber(),
-    ];
+    const randomNumbersArray: number[] = new Array(4).fill(this.getRandomNumber());
     randomNumbersArray.sort();
     randomNumbersArray.shift();
     const reducer = (previousValue: number, currentValue: number) =>
