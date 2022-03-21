@@ -226,9 +226,12 @@ export class Matrix {
 
 // Robot Name
 
+interface ReleasedNames {
+    [index: string]: string;
+  }
 export class Robot {
   currentName: string;
-
+  
   constructor() {
     this.currentName = "";
   }
@@ -262,7 +265,7 @@ export class Robot {
     "Z",
   ];
 
-  public static releasedNames: Set<string> = new Set();
+  public static releasedNames: ReleasedNames = {};
 
   public static generateRandomName(): string {
     return `${Robot.alphabet[Math.floor(Math.random() * 26)]}${
@@ -275,14 +278,12 @@ export class Robot {
   public get name(): string {
     if (this.currentName === "") {
       let tempName: string = Robot.generateRandomName();
-      Robot.releasedNames.add(tempName);
-
-      for (let i: number = 0; i < Robot.releasedNames.size; i++) {
-        if (Robot.releasedNames.has(tempName)) {
+      Robot.releasedNames[tempName] = tempName;
+        if (Robot.releasedNames[tempName] !== undefined) {
           tempName = Robot.generateRandomName();
-          Robot.releasedNames.add(tempName);
+          Robot.releasedNames[tempName] = tempName;
         }
-      }
+      
 
       this.currentName = tempName;
     }
@@ -295,7 +296,7 @@ export class Robot {
   }
 
   public static releaseNames(): void {
-    Robot.releasedNames.clear();
+    Robot.releasedNames = {};
   }
 }
 
